@@ -9,14 +9,14 @@ import csv
 
 budgetData = os.path.join("Resources","budget_data.csv")
 
-#Reading the CSV
+#Opening budget_data.csv
 
 with open(budgetData) as csvfile:
-    readBudgetData = csv.reader(csvfile, delimiter= ",")
-    print(readBudgetData)
     
+    #Reading the CSV
+
+    readBudgetData = csv.reader(csvfile, delimiter= ",")
     dataheader = next(readBudgetData)
-    print(dataheader)
 
     #Setting up variables
     
@@ -25,16 +25,14 @@ with open(budgetData) as csvfile:
     greatIncrease = 0
     greatDecrease = 0
 
-    
-
     #For loop going through each row of data
    
     for row in readBudgetData:
 
-        
+        #Variables based on the CSV header
+
         date = row[0]
         profitLoss = int(row[1])
-        print(row)
 
         #The number of months in the entire period
 
@@ -56,17 +54,35 @@ with open(budgetData) as csvfile:
             greatDecrease = profitLoss
             decreaseDate = date
 
-
-
     #Calculating Average Change
 
     avgChange = round((netTotal / totalMonths), 2)
 
     #Printing Summary Table
-    print(f'Financial Analysis')
-    print("-" * 28)
-    print(f'Total Months: {totalMonths}')
-    print(f'Total: ${netTotal}')
-    print(f'Average Change: ${avgChange}')
-    print(f'Greatest Increase in Profits: {increaseDate} (${greatIncrease})')
-    print(f'Greatest Decrease in Profits: {decreaseDate} (${greatDecrease})')
+
+    def summary():
+        print(f'Financial Analysis')
+        print("-" * 28)
+        print(f'Total Months: {totalMonths}')
+        print(f'Total: ${netTotal}')
+        print(f'Average Change: ${avgChange}')
+        print(f'Greatest Increase in Profits: {increaseDate} (${greatIncrease})')
+        print(f'Greatest Decrease in Profits: {decreaseDate} (${greatDecrease})')
+    
+    summary()
+
+#Path for Analysis
+
+budgetAnalysis = os.path.join("Analysis","budget_analysis.txt")
+
+#Opening budget_analysis.txt
+
+with open(budgetAnalysis, 'w', newline="") as textfile:
+    print(f'Financial Analysis', file = textfile)
+    print("-" * 28, file = textfile)
+    print(f'Total Months: {totalMonths}', file = textfile)
+    print(f'Total: ${netTotal}', file = textfile)
+    print(f'Average Change: ${avgChange}', file = textfile)
+    print(f'Greatest Increase in Profits: {increaseDate} (${greatIncrease})', file = textfile)
+    print(f'Greatest Decrease in Profits: {decreaseDate} (${greatDecrease})', file = textfile)
+
