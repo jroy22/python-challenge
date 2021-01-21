@@ -23,6 +23,8 @@ with open(electionData) as csvfile:
 
     #Setting up variables
     totalVotes = 0
+    candidateList= []
+    
 
     #For loop going through each row of data
    
@@ -33,16 +35,22 @@ with open(electionData) as csvfile:
         voterId = row[0]
         county = row[1]
         candidate = row[2]
-
+       
         #The total number of votes
         totalVotes += 1
 
-        #Sum of the net total amount of Profit/Losses of the entire period
+        #List of candidates
+        
+        for name in candidate:
+            if name not in candidateList:
+                candidateList.append(name)
 
 
+    #Create a dictionary for Candidate names
 
-
-
+    Candidates = {}       
+    Candidates["Name"] = candidateList
+    print(Candidates)
 
     #Printing Summary Table
 
@@ -50,3 +58,9 @@ with open(electionData) as csvfile:
     print("-" * 25)
     print(f'Total Votes: {totalVotes}')
     print("-" * 25)
+    # print(f'{candidate[0]}: {percentage}, {numberofvotes}')
+    # print(f'{candidate[1]}: {percentage}, {numberofvotes}')
+    # print(f'{candidate[2]}: {percentage}, {numberofvotes}')
+    # print(f'{candidate[3]}: {percentage}, {numberofvotes}')
+    print("-" * 25)
+    #  print(f'Winner: {winner}')

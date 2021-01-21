@@ -85,4 +85,3 @@ with open(budgetAnalysis, 'w', newline="") as textfile:
     print(f'Average Change: ${avgChange}', file = textfile)
     print(f'Greatest Increase in Profits: {increaseDate} (${greatIncrease})', file = textfile)
     print(f'Greatest Decrease in Profits: {decreaseDate} (${greatDecrease})', file = textfile)
-
