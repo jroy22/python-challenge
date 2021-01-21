@@ -39,4 +39,14 @@ with open(electionData) as csvfile:
 
         #Sum of the net total amount of Profit/Losses of the entire period
 
-    print(totalVotes)
+
+
+
+
+
+    #Printing Summary Table
+
+    print("Election Results")
+    print("-" * 25)
+    print(f'Total Votes: {totalVotes}')
+    print("-" * 25)
