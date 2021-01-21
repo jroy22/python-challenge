@@ -18,8 +18,9 @@ with open(budgetData) as csvfile:
     dataheader = next(readBudgetData)
     print(dataheader)
 
-#Setting up variables
-
+    #Setting up variables
+    
+    totalMonths = 0
     netTotal = 0
 
     #For loop printing the csv
@@ -28,13 +29,21 @@ with open(budgetData) as csvfile:
         profitLoss = int(row[1])
         print(row)
 
+        #The number of months in the entire period
 
+        totalMonths += 1
 
         #Sum of the net total amount of Profit/Losses of the entire period
 
         netTotal += profitLoss
     
+    #Calculating Average Change
+
+    avgChange = round((netTotal / totalMonths), 2)
+
     #Printing Summary Table
     print(f'Financial Analysis')
     print("-" * 28)
+    print(f'Total Months: {totalMonths}')
     print(f'Total: ${netTotal}')
+    print(f'Average Change: ${avgChange}')
