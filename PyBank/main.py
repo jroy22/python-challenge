@@ -22,10 +22,17 @@ with open(budgetData) as csvfile:
     
     totalMonths = 0
     netTotal = 0
+    greatIncrease = 0
+    greatDecrease = 0
 
-    #For loop printing the csv
+    
+
+    #For loop going through each row of data
    
     for row in readBudgetData:
+
+        
+        date = row[0]
         profitLoss = int(row[1])
         print(row)
 
@@ -36,7 +43,21 @@ with open(budgetData) as csvfile:
         #Sum of the net total amount of Profit/Losses of the entire period
 
         netTotal += profitLoss
-    
+
+        #Getting the Greatest Increase in Profits
+
+        if profitLoss > greatIncrease:
+            greatIncrease = profitLoss
+            increaseDate = date
+        
+        #Getting the Greatest Decrease in Profits
+
+        if profitLoss < greatDecrease:
+            greatDecrease = profitLoss
+            decreaseDate = date
+
+
+
     #Calculating Average Change
 
     avgChange = round((netTotal / totalMonths), 2)
@@ -47,3 +68,5 @@ with open(budgetData) as csvfile:
     print(f'Total Months: {totalMonths}')
     print(f'Total: ${netTotal}')
     print(f'Average Change: ${avgChange}')
+    print(f'Greatest Increase in Profits: {increaseDate} (${greatIncrease})')
+    print(f'Greatest Decrease in Profits: {decreaseDate} (${greatDecrease})')
