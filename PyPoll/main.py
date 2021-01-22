@@ -18,13 +18,21 @@ with open(electionData) as csvfile:
     readElectionData = csv.reader(csvfile, delimiter= ",")
     dataheader = next(readElectionData) 
 
-    print(readElectionData)
-    print(dataheader)
-
     #Setting up variables
     totalVotes = 0
+    voteOne = 0
+    voteTwo = 0
+    voteThree = 0
+    voteFour = 0
     candidateList= []
-    
+    candidateVotes = []
+    candidatePercent = []
+
+    #Create a dictionary for Election Results
+    electionResults = {}       
+    electionResults["Name"] = candidateList
+    electionResults["NumberofVotes"] = candidateVotes
+    electionResults["Percentage"] = candidatePercent
 
     #For loop going through each row of data
    
@@ -34,25 +42,31 @@ with open(electionData) as csvfile:
 
         voterId = row[0]
         county = row[1]
-        candidate =row[2]
+        candidateName =row[2]
        
         #The total number of votes
         totalVotes += 1
 
-        #List of candidates
-        
+        #Creating a list of candidates
     
-        if candidate not in candidateList:
-            candidateList.append(candidate)
+        if candidateName not in candidateList:
+            candidateList.append(candidateName)
 
+        #Getting the total votes per candidate
 
-    #Create a dictionary for Candidate names
-
-    Candidates = {}       
-    Candidates["Name"] = candidateList
-    print(Candidates)
+        if candidateName == electionResults["Name"][0]:
+                voteOne += 1
+        elif candidateName == electionResults["Name"][1]:
+                voteTwo += 1
+        elif candidateName == electionResults["Name"][2]:
+                voteThree += 1    
+        elif candidateName == electionResults["Name"][3]:
+                voteFour += 1
 
     
+    candidateVotes = [voteOne,voteTwo,voteThree,voteFour]
+    electionResults["NumberofVotes"] = candidateVotes
+    print(electionResults)
 
     #Printing Summary Table
 

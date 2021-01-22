@@ -59,26 +59,23 @@ with open(budgetData) as csvfile:
         #Calculate Monthly Change
 
         change = profitLoss - lastMonth
-        print(change)
        
         monthlyChange.append(change)
-        print(monthlyChange)
-       
+    
         lastMonth = profitLoss
-        print(lastMonth)
 
+    #For loop Ends
 
     #Removing the first Change in monthlyChange[] because this is the start of the period no change occurs
     monthlyChange.pop(0)
-    print(monthlyChange)
 
     #Calculating Average Change
 
-    # totalChange = 
-    # numberOfChange = 
-    
-    # avgChange = 
-    # avgChange = round((netTotal / totalMonths), 2)
+    totalChange = sum(monthlyChange)
+   
+    numberOfChange = len(monthlyChange)
+ 
+    avgChange = round((totalChange / numberOfChange), 2)
 
     #Printing Summary Table
 
