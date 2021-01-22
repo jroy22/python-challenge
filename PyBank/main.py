@@ -24,6 +24,8 @@ with open(budgetData) as csvfile:
     netTotal = 0
     greatIncrease = 0
     greatDecrease = 0
+    monthlyChange = []
+    lastMonth = 0
 
     #For loop going through each row of data
    
@@ -54,23 +56,40 @@ with open(budgetData) as csvfile:
             greatDecrease = profitLoss
             decreaseDate = date
 
+        #Calculate Monthly Change
+
+        change = profitLoss - lastMonth
+        print(change)
+       
+        monthlyChange.append(change)
+        print(monthlyChange)
+       
+        lastMonth = profitLoss
+        print(lastMonth)
+
+
+    #Removing the first Change in monthlyChange[] because this is the start of the period no change occurs
+    monthlyChange.pop(0)
+    print(monthlyChange)
+
     #Calculating Average Change
 
-    avgChange = round((netTotal / totalMonths), 2)
+    # totalChange = 
+    # numberOfChange = 
+    
+    # avgChange = 
+    # avgChange = round((netTotal / totalMonths), 2)
 
     #Printing Summary Table
 
-    def summary():
-        print(f'Financial Analysis')
-        print("-" * 28)
-        print(f'Total Months: {totalMonths}')
-        print(f'Total: ${netTotal}')
-        print(f'Average Change: ${avgChange}')
-        print(f'Greatest Increase in Profits: {increaseDate} (${greatIncrease})')
-        print(f'Greatest Decrease in Profits: {decreaseDate} (${greatDecrease})')
+    print(f'Financial Analysis')
+    print("-" * 28)
+    print(f'Total Months: {totalMonths}')
+    print(f'Total: ${netTotal}')
+    print(f'Average Change: ${avgChange}')
+    print(f'Greatest Increase in Profits: {increaseDate} (${greatIncrease})')
+    print(f'Greatest Decrease in Profits: {decreaseDate} (${greatDecrease})')
     
-    summary()
-
 #Path for Analysis
 
 budgetAnalysis = os.path.join("Analysis","budget_analysis.txt")
