@@ -34,16 +34,16 @@ with open(electionData) as csvfile:
 
         voterId = row[0]
         county = row[1]
-        candidate = row[2]
+        candidate =row[2]
        
         #The total number of votes
         totalVotes += 1
 
         #List of candidates
         
-        for name in candidate:
-            if name not in candidateList:
-                candidateList.append(name)
+    
+        if candidate not in candidateList:
+            candidateList.append(candidate)
 
 
     #Create a dictionary for Candidate names
@@ -51,6 +51,8 @@ with open(electionData) as csvfile:
     Candidates = {}       
     Candidates["Name"] = candidateList
     print(Candidates)
+
+    
 
     #Printing Summary Table
 
