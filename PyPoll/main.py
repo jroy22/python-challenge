@@ -47,7 +47,7 @@ with open(electionData) as csvfile:
         #The total number of votes
         totalVotes += 1
 
-        #Creating a list of candidates
+        #Assigning values in the list candidateNames
     
         if candidateName not in candidateList:
             candidateList.append(candidateName)
@@ -62,11 +62,32 @@ with open(electionData) as csvfile:
                 voteThree += 1    
         elif candidateName == electionResults["Name"][3]:
                 voteFour += 1
+    
+    #End of For Loop 
 
+    #Assigning values in the List candidateVotes
     
     candidateVotes = [voteOne,voteTwo,voteThree,voteFour]
+   
+    #Calculating Vote percentages per candidate
+
+    percentOne = "{:.3%}".format(voteOne / totalVotes)
+   
+    percentTwo = "{:.3%}".format(voteTwo / totalVotes)
+
+    percentThree = "{:.3%}".format(voteThree / totalVotes)
+   
+    percentFour = "{:.3%}".format(voteFour / totalVotes)
+
+    #Assigning values in the List candidatePercent
+
+    candidatePercent = [percentOne, percentTwo, percentThree, percentFour]
+
+    #Assigning Keys and Values to the Dictionary
+    electionResults["Name"] = candidateList
     electionResults["NumberofVotes"] = candidateVotes
-    print(electionResults)
+    electionResults["Percentage"] = candidatePercent
+
 
     #Printing Summary Table
 
@@ -74,9 +95,9 @@ with open(electionData) as csvfile:
     print("-" * 25)
     print(f'Total Votes: {totalVotes}')
     print("-" * 25)
-    # print(f'{candidate[0]}: {percentage}, {numberofvotes}')
-    # print(f'{candidate[1]}: {percentage}, {numberofvotes}')
-    # print(f'{candidate[2]}: {percentage}, {numberofvotes}')
-    # print(f'{candidate[3]}: {percentage}, {numberofvotes}')
+    print(f'{electionResults["Name"][0]}: {electionResults["Percentage"][0]} ({electionResults["NumberofVotes"][0]})')
+    print(f'{electionResults["Name"][1]}: {electionResults["Percentage"][1]} ({electionResults["NumberofVotes"][1]})')
+    print(f'{electionResults["Name"][2]}: {electionResults["Percentage"][2]} ({electionResults["NumberofVotes"][2]})')
+    print(f'{electionResults["Name"][3]}: {electionResults["Percentage"][3]} ({electionResults["NumberofVotes"][3]})')
     print("-" * 25)
     #  print(f'Winner: {winner}')
