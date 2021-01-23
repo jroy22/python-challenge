@@ -106,3 +106,21 @@ with open(electionData) as csvfile:
     print(f'{electionResults["Name"][3]}: {electionResults["Percentage"][3]} ({electionResults["NumberofVotes"][3]})')
     print("-" * 25)
     print(f'Winner: {winner}')
+
+#Path for Analysis
+
+results = os.path.join("Analysis","election_results.txt")
+
+#Opening election_results.txt
+
+with open(results, 'w', newline="") as textfile:
+    print("Election Results", file= textfile)
+    print("-" * 25, file= textfile)
+    print(f'Total Votes: {totalVotes}', file= textfile)
+    print("-" * 25, file= textfile)
+    print(f'{electionResults["Name"][0]}: {electionResults["Percentage"][0]} ({electionResults["NumberofVotes"][0]})', file= textfile)
+    print(f'{electionResults["Name"][1]}: {electionResults["Percentage"][1]} ({electionResults["NumberofVotes"][1]})', file= textfile)
+    print(f'{electionResults["Name"][2]}: {electionResults["Percentage"][2]} ({electionResults["NumberofVotes"][2]})', file= textfile)
+    print(f'{electionResults["Name"][3]}: {electionResults["Percentage"][3]} ({electionResults["NumberofVotes"][3]})', file= textfile)
+    print("-" * 25, file= textfile)
+    print(f'Winner: {winner}', file= textfile)
