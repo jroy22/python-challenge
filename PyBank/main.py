@@ -20,6 +20,7 @@ with open(budgetData) as csvfile:
 
     #Setting up variables
     
+    linebreak = "-" * 28
     totalMonths = 0
     netTotal = 0
     greatIncrease = 0
@@ -67,6 +68,7 @@ with open(budgetData) as csvfile:
     #For loop Ends
 
     #Removing the first Change in monthlyChange[] because this is the start of the period no change occurs
+    
     monthlyChange.pop(0)
 
     #Calculating Average Change
@@ -80,7 +82,7 @@ with open(budgetData) as csvfile:
     #Printing Summary Table
 
     print(f'Financial Analysis')
-    print("-" * 28)
+    print(linebreak)
     print(f'Total Months: {totalMonths}')
     print(f'Total: ${netTotal}')
     print(f'Average Change: ${avgChange}')
@@ -95,9 +97,10 @@ budgetAnalysis = os.path.join("Analysis","budget_analysis.txt")
 
 with open(budgetAnalysis, 'w', newline="") as textfile:
     print(f'Financial Analysis', file = textfile)
-    print("-" * 28, file = textfile)
+    print(linebreak, file = textfile)
     print(f'Total Months: {totalMonths}', file = textfile)
     print(f'Total: ${netTotal}', file = textfile)
     print(f'Average Change: ${avgChange}', file = textfile)
     print(f'Greatest Increase in Profits: {increaseDate} (${greatIncrease})', file = textfile)
     print(f'Greatest Decrease in Profits: {decreaseDate} (${greatDecrease})', file = textfile)
+

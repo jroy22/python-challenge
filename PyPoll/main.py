@@ -19,6 +19,8 @@ with open(electionData) as csvfile:
     dataheader = next(readElectionData) 
 
     #Setting up variables
+    
+    linebreak = "-" * 25
     totalVotes = 0
     voteOne = 0
     voteTwo = 0
@@ -28,7 +30,9 @@ with open(electionData) as csvfile:
     candidateVotes = []
     candidatePercent = []
 
+
     #Create a dictionary for Election Results
+    
     electionResults = {}    
     electionResults["Name"] = []
     electionResults["NumberofVotes"] = []
@@ -97,14 +101,14 @@ with open(electionData) as csvfile:
     #Printing Summary Table
 
     print("Election Results")
-    print("-" * 25)
+    print(linebreak)
     print(f'Total Votes: {totalVotes}')
-    print("-" * 25)
+    print(linebreak)
     print(f'{electionResults["Name"][0]}: {electionResults["Percentage"][0]} ({electionResults["NumberofVotes"][0]})')
     print(f'{electionResults["Name"][1]}: {electionResults["Percentage"][1]} ({electionResults["NumberofVotes"][1]})')
     print(f'{electionResults["Name"][2]}: {electionResults["Percentage"][2]} ({electionResults["NumberofVotes"][2]})')
     print(f'{electionResults["Name"][3]}: {electionResults["Percentage"][3]} ({electionResults["NumberofVotes"][3]})')
-    print("-" * 25)
+    print(linebreak)
     print(f'Winner: {winner}')
 
 #Path for Analysis
@@ -115,12 +119,12 @@ results = os.path.join("Analysis","election_results.txt")
 
 with open(results, 'w', newline="") as textfile:
     print("Election Results", file= textfile)
-    print("-" * 25, file= textfile)
+    print(linebreak, file= textfile)
     print(f'Total Votes: {totalVotes}', file= textfile)
-    print("-" * 25, file= textfile)
+    print(linebreak, file= textfile)
     print(f'{electionResults["Name"][0]}: {electionResults["Percentage"][0]} ({electionResults["NumberofVotes"][0]})', file= textfile)
     print(f'{electionResults["Name"][1]}: {electionResults["Percentage"][1]} ({electionResults["NumberofVotes"][1]})', file= textfile)
     print(f'{electionResults["Name"][2]}: {electionResults["Percentage"][2]} ({electionResults["NumberofVotes"][2]})', file= textfile)
     print(f'{electionResults["Name"][3]}: {electionResults["Percentage"][3]} ({electionResults["NumberofVotes"][3]})', file= textfile)
-    print("-" * 25, file= textfile)
+    print(linebreak, file= textfile)
     print(f'Winner: {winner}', file= textfile)
