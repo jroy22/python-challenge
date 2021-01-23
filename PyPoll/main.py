@@ -24,15 +24,15 @@ with open(electionData) as csvfile:
     voteTwo = 0
     voteThree = 0
     voteFour = 0
-    candidateList= []
+    candidateNames= []
     candidateVotes = []
     candidatePercent = []
 
     #Create a dictionary for Election Results
-    electionResults = {}       
-    electionResults["Name"] = candidateList
-    electionResults["NumberofVotes"] = candidateVotes
-    electionResults["Percentage"] = candidatePercent
+    electionResults = {}    
+    electionResults["Name"] = []
+    electionResults["NumberofVotes"] = []
+    electionResults["Percentage"] = []
 
     #For loop going through each row of data
    
@@ -42,25 +42,29 @@ with open(electionData) as csvfile:
 
         voterId = row[0]
         county = row[1]
-        candidateName =row[2]
+        name =row[2]
        
         #The total number of votes
         totalVotes += 1
 
+        #Assigning a list to the Key Name to Dictionary
+
+        electionResults["Name"] = candidateNames
+        
         #Assigning values in the list candidateNames
-    
-        if candidateName not in candidateList:
-            candidateList.append(candidateName)
+
+        if name not in candidateNames:
+            candidateNames.append(name)
 
         #Getting the total votes per candidate
 
-        if candidateName == electionResults["Name"][0]:
+        if name == electionResults["Name"][0]:
                 voteOne += 1
-        elif candidateName == electionResults["Name"][1]:
+        elif name == electionResults["Name"][1]:
                 voteTwo += 1
-        elif candidateName == electionResults["Name"][2]:
+        elif name == electionResults["Name"][2]:
                 voteThree += 1    
-        elif candidateName == electionResults["Name"][3]:
+        elif name == electionResults["Name"][3]:
                 voteFour += 1
     
     #End of For Loop 
@@ -72,22 +76,23 @@ with open(electionData) as csvfile:
     #Calculating Vote percentages per candidate
 
     percentOne = "{:.3%}".format(voteOne / totalVotes)
-   
     percentTwo = "{:.3%}".format(voteTwo / totalVotes)
-
     percentThree = "{:.3%}".format(voteThree / totalVotes)
-   
     percentFour = "{:.3%}".format(voteFour / totalVotes)
 
     #Assigning values in the List candidatePercent
 
     candidatePercent = [percentOne, percentTwo, percentThree, percentFour]
 
-    #Assigning Keys and Values to the Dictionary
-    electionResults["Name"] = candidateList
+    #Assigning a list to the Keys NumberofVotes and Percent to Dictionary
     electionResults["NumberofVotes"] = candidateVotes
     electionResults["Percentage"] = candidatePercent
 
+    #Find the Winner
+
+    winVotes = max(candidateVotes)
+    winIndex = int(candidateVotes.index(winVotes))
+    winner = candidateNames[winIndex]
 
     #Printing Summary Table
 
@@ -100,4 +105,4 @@ with open(electionData) as csvfile:
     print(f'{electionResults["Name"][2]}: {electionResults["Percentage"][2]} ({electionResults["NumberofVotes"][2]})')
     print(f'{electionResults["Name"][3]}: {electionResults["Percentage"][3]} ({electionResults["NumberofVotes"][3]})')
     print("-" * 25)
-    #  print(f'Winner: {winner}')
+    print(f'Winner: {winner}')
