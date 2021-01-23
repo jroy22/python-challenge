@@ -65,7 +65,7 @@ with open(budgetData) as csvfile:
     
         lastMonth = profitLoss
 
-    #For loop Ends
+    #End of For Loop
 
     #Removing the first Change in monthlyChange[] because this is the start of the period no change occurs
     
@@ -88,7 +88,9 @@ with open(budgetData) as csvfile:
     print(f'Average Change: ${avgChange}')
     print(f'Greatest Increase in Profits: {increaseDate} (${greatIncrease})')
     print(f'Greatest Decrease in Profits: {decreaseDate} (${greatDecrease})')
-    
+
+# Closes budget_data.csv file 
+
 #Path for Analysis
 
 budgetAnalysis = os.path.join("Analysis","budget_analysis.txt")
@@ -104,3 +106,4 @@ with open(budgetAnalysis, 'w', newline="") as textfile:
     print(f'Greatest Increase in Profits: {increaseDate} (${greatIncrease})', file = textfile)
     print(f'Greatest Decrease in Profits: {decreaseDate} (${greatDecrease})', file = textfile)
 
+#Ends code to analyze Financial Records and export Analysis to a text file

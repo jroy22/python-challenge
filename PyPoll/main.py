@@ -30,7 +30,6 @@ with open(electionData) as csvfile:
     candidateVotes = []
     candidatePercent = []
 
-
     #Create a dictionary for Election Results
     
     electionResults = {}    
@@ -111,6 +110,8 @@ with open(electionData) as csvfile:
     print(linebreak)
     print(f'Winner: {winner}')
 
+#Closes election_data.csv file
+
 #Path for Analysis
 
 results = os.path.join("Analysis","election_results.txt")
@@ -128,3 +129,5 @@ with open(results, 'w', newline="") as textfile:
     print(f'{electionResults["Name"][3]}: {electionResults["Percentage"][3]} ({electionResults["NumberofVotes"][3]})', file= textfile)
     print(linebreak, file= textfile)
     print(f'Winner: {winner}', file= textfile)
+
+#Ends the code of counting Election Data and export Results to a text file
